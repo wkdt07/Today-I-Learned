@@ -264,7 +264,7 @@ git clone 'URL'
 git add.
 git config. user email ' '
 git config. user name ' '
-git commit -ㅡ "파일이름"
+git commit -m "파일이름"
 
 수정한걸 push하면 내가 수정한 것만 새로 push 된다.(덮어쓰기)
 
@@ -309,7 +309,7 @@ git log
 5. push(=업로드와 같음. 근데 git에서는 업로드라는 말을 안 쓴다.)
 클론하면 리모트도 같이 됨
 
-git remote add origin (깃헙에서 갖고온 url)-top repositories에서 해당 repositories에 들어가서 url 갖고와라
+git remote add origin {깃헙에서 갖고온 url}-top repositories에서 해당 repositories에 들어가서 url 갖고와라
 git remote -v
 git push -u origin master  (u는 처음 할 때)
 git push origin +master (+는 덮어쓰기라 생각하면 됨, 변경사항 저장하는거)
