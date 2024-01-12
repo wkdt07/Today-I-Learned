@@ -1,0 +1,47 @@
+240112
+1.Remote Repository
+2.로컬&원격 저장소
+**3. gitignore-전체를 add 하더라도 여기 있는 애들은 제외하고 추가
+4.github 활용 
+
+==========================
+
+1. Remote Repository 원격 저장소
+
+-코드를 공유할 수 있는, 협업용 저장 공간 (ex.인프런의 강의 공간)
+-gitlab(싸피에서 사용, 보안때문에) github(개인 개발자는 대부분 이거) bitbucket
+
+=======================================================
+2.로컬 & 원격 저장소
+깃과 깃헙 
+
+'git remote add origin {url}'
+
+로컬 저장소에 원격 저장소 주소 추가, 여기서 origin은 추가된 저장소의 임시 이름
+
+1) git init -> add, commit -> remote -> push (정석)
+
+2) git init -> clone -> add,commit -> push
+
+명령어가 익숙해질 정도로 자주 쓴다
+
+github에서 다운로드 하는게 pull or clone , 업로드하는게 push
+
+'git push -u origin master'
+
+commit 목록을 업로드 
+
+pull 이나 clone은 상관 없는데 push는 개인 공간에 넣는거라 로그인 필요
+
+commit 이력이 없다면 push 할 수 없다.
+add commit push는 필수, why? 수정을 해도 임시 저장소엔 올라가질 않는다.
+
+'git pull origin master'-이미 작업하던 곳에서 사용. 이미 push와 clone을 사용했을 때
+
+'git clone {url}'-**처음** 사용하는 자리에선 이걸 쓰는게 맞음. 특정 branch가 연결되어있는게 아니니깐
+
+
++)origin과 plus, 2개의 다른 원격저장소 루트를 이용하고 url을 다르게 해서 같은 디렉토리에서 서로 다른 내용을 push할 수 있음
+
+========================================================================
+****3.git ignore******
