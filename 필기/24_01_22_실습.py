@@ -329,16 +329,34 @@
 # print(hash('b'))
 
 
-my_set = {39, 5, 1, 4, 3, 9, 10, 2, 100, 52}
+# my_set = {39, 5, 1, 4, 3, 9, 10, 2, 100, 52}
 
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set.pop())
-print(my_set)
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set.pop())
+# print(my_set)
+L = [2,3,1,5,4]
+print(L.reverse())
+# s= 'String'
+# print(s.upper())
+
+# print(s)
+
+# D = {
+#     'a':1,
+#     'b':2
+# }
+
+# print(D.clear())
+
+s='banana'
+
+s_n = s.replace('a','b')
+print(s_n) #bbnbnb
