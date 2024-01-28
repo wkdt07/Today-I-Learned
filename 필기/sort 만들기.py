@@ -7,7 +7,7 @@ def my_len(lst):
 
 def my_sort(lst):
     for i in range(1, my_len(lst)):
-        for j in range(my_len(lst)-1):
+        for j in range(my_len(lst)):
             if lst[i]>=lst[j]:
                 pass
             elif lst[i]<lst[j]:
@@ -19,4 +19,5 @@ b = ['c','d','a','o','t']
 
 print(my_sort(a))
 print(my_sort(b))
-        
+
+

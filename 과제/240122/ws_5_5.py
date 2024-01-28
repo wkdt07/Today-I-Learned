@@ -35,3 +35,14 @@ result.extend(even)
 
 
 '''
+
+""" 리스트 컴프리헨션으로 간단하게 가능
+
+def even_lst(lst):
+    result = [i for i in lst if i % 2 == 0]
+    return result
+
+my_list=[1,2,3,4,5,6,7,8,9,10]
+print(even_lst(my_list))    
+
+ """
