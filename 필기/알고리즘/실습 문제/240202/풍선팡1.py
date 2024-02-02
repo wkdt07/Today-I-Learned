@@ -1,0 +1,59 @@
+# # 풍선팡 1에서 특정 상황에서 범위가 바뀜
+#
+# T = int(input())
+#
+# for t in range(1,T+1):
+#     N,M = map(int,input().split())
+#     arr = [list(map(int,input().split())) for _ in range(N)]
+#
+#     di = [0,0,-1,1]
+#     dj = [1,-1,0,0]
+#
+#     max_v = 0 # 최대 꽃가루 합계
+#     for i in range(N):
+#         for j in range(M):
+#             cnt = arr[i][j] # 터트린 풍선의 꽃가루 수
+#             for k in range(4): #주변 풍선의 인덱스 ni,nj
+#                 # 여기서부터 추가
+#                 for l in range(1,arr[i][j]+1):
+#
+#                     ni = i +di[k]*l
+#                     nj = j + dj[k]*l
+#                     if 0 <= ni <N and 0 <= nj < M:
+#                         cnt += arr[ni][nj]
+#
+#             # 꽃가루를 최대값과 비교
+#             if max_v < cnt:
+#                 max_v = cnt
+#
+#     print(f'#{t} {max_v}')
+
+
+T = int(input())
+
+for t in range(1,T+1):
+    N,M = map(int,input().split())
+    arr = [list(map(int,input().split())) for _ in range(N)]
+
+    di = [0,0,1,-1]
+    dj = [1,-1,0,0]
+
+
+    lst = []
+    for i in range(N):
+        for j in range(M):
+            cnt = arr[i][j]
+            K = arr[i][j]
+            for n in range(4):
+                for k in range(1,K+1):
+                    ni = i + k*di[n]
+                    nj = j + k*dj[n]
+                    if 0<=ni<N and 0<=nj<M:
+                        cnt+=arr[ni][nj]
+            lst.append(cnt)
+# 꽃가루를 최대값과 비교
+#             if max_v < cnt:
+#                 max_v = cnt # 리스트 안 써도 됨
+    max_v = max(lst)
+
+    print(f'#{t} {max_v}')
