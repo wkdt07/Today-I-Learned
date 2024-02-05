@@ -6,8 +6,8 @@ def my_max(lst):
         if max_one <= i:
             max_one = i
         
-        else:
-            continue
+        # else:
+        #     continue
     
     return max_one
 
