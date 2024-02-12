@@ -9,14 +9,32 @@ arr = [[],
 # print(arr)
 
 s,e = map(int,input().split())
-visited = [0]*(len(arr)+1)
+# visited = [0]*(len(arr)+1)
 
+cnt_lst = []
 
+# 현재 계속 arr[s][0]로 가는 문제 발생, visited 만들어서 만약 1이라면 다음으로 가는 걸로 경로 변경
+def dfs(s,e,cnt):
+    rst = s
+    if rst == e:
+        cnt_lst.append(cnt)
+        cnt -= 1
+        return
 
+    if arr[s] != []:
+        K = len(arr[s])
+        for k in range(K):
+            s = arr[s][k]
+            dfs(s,e,cnt+1)
+
+dfs(s,e,1)
+print(cnt_lst)
+
+'''
 def dfs(s,e):
     cnt = 0
     min_v = float('inf')
-    visited[s] = 1
+    # visited[s] = 1
     for w in arr[s]:
         if len(arr[w])>=1 :
 
@@ -33,3 +51,4 @@ def dfs(s,e):
 
     return min_v
 print(dfs(4,6))
+'''

@@ -65,6 +65,6 @@ def dfs(level,now):
         if arr[now][i] == 1: #다음 경로가 존재하면
             path[level+1] = i # 경로를 기록
             dfs(level+1,i) #다음 경로로 dfs, i가 새로운 now
-            path[level+1] = 0 # 탐색 끝나면 경로 초기화
+            path[level+1] = 0 # 탐색 끝나면(입력 끝나면) 해당 경로 초기화, 다음 경로로
 
 dfs(0,0)
