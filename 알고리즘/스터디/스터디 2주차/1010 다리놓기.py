@@ -1,25 +1,19 @@
-T = int(input())
+# from math import factorial as fac
+import sys
 
+T = int(sys.stdin.readline())
 
-# def bridge(n,m):
-#     '''
-#     for i in range(1,m-n+1):
-#         for j in range(i,m-n):
-#     '''
-#     cnt = 0
-#     while j>0 and i <= m-n:
-#         j = m-n+1
-#         i = 0
-#
-#         i += 1
-#         j -= 1
-#         cnt += 1
-#
-#     return cnt
+def fac(n):
+    result = 1
+    if n == 0 or n == 1:
+        return result
 
-# for t in range(T):
-#     n,m = map(int,input().split())
-#
+    return n * fac(n-1)
+
+for t in range(1,T+1):
+    n,m = map(int,sys.stdin.readline().split())
+    result = int(fac(m)/(fac(m-n)*fac(n)))
+    print(result)
 
 '''
 첫 번째가 선택할 수 있는 경우의 수 -> 1번~m-n-1번, 선택한걸 i라 한다면
@@ -28,5 +22,6 @@ T = int(input())
 .
 .
 .
-
+그냥 뽑아놓으면 알아서 정렬된다
+mCn
 '''
