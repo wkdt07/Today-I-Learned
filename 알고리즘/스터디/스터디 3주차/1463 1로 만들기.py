@@ -2,20 +2,35 @@
 from collections import deque
 q = deque()
 N = int(input())
-
-q.append(N)
-cnt = 0
+# visited = [0] * (10**6 +1)
+visited = [0] * (N+1)
+q.append((0,N))
 while q:
-    cnt += 1
-    t = q.popleft()
-    if t == 1:
-        print(cnt)
+    level,ans = q.popleft()
+    if ans == 1:
+        print(level)
         break
-    if t % 3 == 0:
-        q.append(t%3)
+    if ans % 3 == 0:
+        ans1 = ans//3
+        if ans1 >= 1:
+            if visited[ans1] ==0:
+                visited[ans1] =1
+                q.append((level+1,ans1))
 
-    if t % 2 == 0:
-        q.append(t%2)
+    if ans % 2 == 0:
+        ans2 = ans//2
+        if ans2 >= 1:
+            if visited[ans2]==0:
+                visited[ans2]=1
+                q.append((level+1,ans2))
 
-    q.append(t-1)
+
+    ans3 = ans-1
+    if ans3>= 1:
+        if visited[ans3] ==0:
+            visited[ans3] =1
+            q.append((level+1,ans3))
+
+
+
 
