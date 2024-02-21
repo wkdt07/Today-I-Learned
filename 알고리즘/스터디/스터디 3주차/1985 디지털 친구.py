@@ -5,28 +5,57 @@
 # ex) 2223042와 123은 거의 친구, 137과 470은 아님 why? 맨 앞자리가 0이 되면 안됨
 
 # x,y = map(int,input().split())
-a = {1,2,3}
-b = {1,4,5}
-print(a-b)
+import copy
+
+def mp(n,i):
+    nmp = copy.deepcopy(n)
+    nmp[i] -= 1
+    nmp[i+1] += 1
+    return nmp
+
+def pm(n,i):
+    npm = copy.deepcopy(n)
+    npm[i] += 1
+    npm[i+1] -= 1
+    return npm
+
+def xy():
+    for i in range(len(x)-1):
+        nmp = mp(x,i)
+        npm = pm(x,i)
+        if nmp[0] != 0 and set(nmp) == yset:
+            return True
+        if npm[0] != 0 and set(npm) == yset:
+            return True
+    return False
+
+def yx():
+    for i in range(len(y)-1):
+        nmp = mp(y,i)
+        npm = pm(y,i)
+        if nmp[0] != 0 and set(nmp) == xset:
+            return True
+        if npm[0] != 0 and set(npm) == xset:
+            return True
+    return False
+
 try:
     while True:
-        x,y = map(str,input().split())
-        xset = set(map(int,x))
-        yset = (map(int,y))
-        xlst = sorted(list(xset))
-        ylst = sorted(list(yset))
-        if xlst == ylst:
+        xt,yt = map(str,input().split())
+        x = list(map(int,xt))
+        y = list(map(int,yt))
+
+        xset = set(x) # x의 구성요소
+        yset = set(y) # y의 구성요소
+
+        if xset == yset:
             print('friends')
         else:
-            for
+            if xy() == True or yx() == True:
+                print('almost friends')
 
-                    print('almost friends')
-
-                else:
-                    print('nothing')
-
-
-
+            else:
+                print('nothing')
 
 except:
     pass
