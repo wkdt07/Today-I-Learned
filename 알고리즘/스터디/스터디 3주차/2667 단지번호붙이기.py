@@ -1,12 +1,10 @@
 from collections import deque
 
-
-
 N = int(input())
 
-
-
 arr = [input() for _ in range(N)]
+
+dir = [(1,0),(-1,0),(0,1),(0,-1)]
 
 l_lst = []
 for i in range(N):
@@ -19,14 +17,14 @@ visited = []
 def bfs(s): #(i,j)
     global cnt
     q = deque([s])
-    # print(s)
     visited.append(s)
+
     while q:
         x = q.popleft()
-        # print(x)
         i,j = x
         for d in dir:
             ni,nj = i+d[0],j+d[1]
+            # visited.append((ni,nj))
             if 0<=ni<N and 0<=nj<N and ((ni,nj) not in visited) and arr[ni][nj] == '1':
                 cnt += 1
                 q.append((ni,nj))
@@ -37,21 +35,16 @@ def bfs(s): #(i,j)
 cnt_lst = []
 
 while l_lst:
-    s = l_lst[-1]
-    # print(s)
+    s = l_lst[0]
+    l_lst.remove(s)
     cnt = 1
     bfs(s)
     cnt_lst.append(cnt)
+    cnt_lst.sort()
 
-print(cnt_lst)
-
-
-
-
-
-
-
-
-dir = [(1,0),(-1,0),(0,1),(0,-1)]
+k = len(cnt_lst)
+print(k)
+for i in range(k):
+    print(cnt_lst[i])
 
 
