@@ -10,9 +10,8 @@ for _ in range(N):
     q.append(lst)
 
 # q.rotate(-1)
-while len(q) != 1:
+while len(q) != 1 :
     t = q.popleft()
-    per = t[0]
     x = t[1]
     q.rotate(-(x-1))
     q.popleft()
