@@ -1,6 +1,6 @@
 T = int(input())
 
-dir = [(1,0),(0,1),(-1,0),(0,-1)]
+# dir = [(1,0),(0,1),(-1,0),(0,-1)]
 
 def dfs(s,ans,path,lev=0):
 
@@ -10,7 +10,10 @@ def dfs(s,ans,path,lev=0):
         return
 
     i,j = s
-
+    if j % 2: # 홀수
+        dir = [(1,0),(0,1),(-1,0),(0,-1),(1,-1),(1,1)]
+    else:
+        dir = [(1, 0), (0, 1), (-1, 0), (0, -1), (-1, 1), (-1, -1)]
     for d in dir:
         ni = i + d[0]
         nj = j + d[1]
@@ -24,7 +27,7 @@ def dfs(s,ans,path,lev=0):
 def t_shape(s):
     global ans_lst
     i,j = s
-    if j%2: # 짝수일 때
+    if not j%2: # 짝수일 때
 
         i1,j1 = i-1,j-1
         i2,j2 = i+1,j
@@ -56,18 +59,6 @@ def t_shape(s):
         if (0 <= i4 < N and 0 <= i5 < N and 0 <= i6 < N) and (0 <= j4 < M and 0 <= j5 < M and 0 <= j6 < M):
             k2 = arr[i][j] + arr[i4][j4]+ arr[i5][j5] + arr[i6][j6]
             ans_lst.append(k2)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 for t in range(1,T+1):
