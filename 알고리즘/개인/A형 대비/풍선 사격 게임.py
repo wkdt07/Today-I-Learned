@@ -1,11 +1,11 @@
 # from copy import deepcopy
 
 def shot(sum_v=0,level = 0):
-    global ans_lst
+    global max_v
     if level == N-1:
         idx = vst[1:N+1].index(0)
-        temp = balloons[idx-1]
-        ans_lst.append(sum_v+temp)
+        temp = balloons[1:N+1][idx]
+        max_v = max(max_v,sum_v+temp)
         return
 
     for i in range(1,N+1):
@@ -13,15 +13,15 @@ def shot(sum_v=0,level = 0):
             #
             vst[i] = 1
             #왼쪽
-            l = 1
+            l = 0
             while i-l: # todo 인덱스 확인
                 if vst[i-l]: #이미 터진 애면
                     l += 1
                 else:break
 
             left_shot = balloons[i-l]
-            r = 1
-            while i+r <= N:
+            r = 0
+            while i+r <= N+1:
                 if vst[i+r]:
                     r+=1
                 else:break
@@ -47,16 +47,18 @@ def shot(sum_v=0,level = 0):
 T = int(input())
 
 for t in range(1,T+1):
-    ans_lst = []
+    # ans_lst = []
+    max_v = -float('inf')
+
     N = int(input()) # 풍선의 갯수
     vst = [0]*(N+2) #인덱스 저장할거임
     balloons = list(map(int,input().split()))
     balloons.append(0)
     balloons = [0] +balloons
-    print(balloons)
-    print(vst)
+    # print(balloons)
+    # print(vst)
     # lst_same = balloons.dc
     shot()
-    print(len(ans_lst))
+    # print(ans_lst)
     # rst = max(ans_lst)
-    # print(f'#{t} {rst}')
+    print(f'#{t} {max_v}')
