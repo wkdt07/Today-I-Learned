@@ -1,36 +1,3 @@
-# T = int(input())
-# todo
-# 백트래킹이 아니라 bfs로 que에 이전 노드 넣어서
-# def mt(s,cnt=0):
-#     global min_v
-#     i,j = s
-#
-#     if cnt > min_v:
-#         return
-#
-#     if s == e:
-#         min_v = min(cnt,min_v)
-#         return
-#
-#     if s in turner_in: # todo 터널 지나가는 조건 확인
-#         ni,nj = turner[s][:2]
-#         vst.append((ni,nj))
-#         mt((ni,nj),cnt+turner[s][2])
-#         vst.remove((ni,nj))
-#
-#     for d in dir:
-#         ni,nj = i+d[0],j+d[1]
-#         if 0<=ni<N and 0<=nj<N:
-#             if (ni,nj) not in vst:
-#                 vst.append((ni,nj))
-#                 if mnt[ni][nj] > mnt[i][j]:
-#                     tmp = 2*(mnt[ni][nj]-mnt[i][j])
-#                 elif mnt[ni][nj] == mnt[i][j]:
-#                     tmp = 1
-#                 else :
-#                     tmp = 0
-#                 mt((ni,nj),cnt+tmp)
-#                 vst.remove((ni,nj))
 
 from collections import deque as dq
 
@@ -133,9 +100,6 @@ for tc in range(1,T+1):
 
         tunnel[num] = ai,aj,bi,bj,fuel
 
-# dir을 뒤로도 갈 수 있나?
-
-
     dir = [(1,0),(0,1),(-1,0),(0,-1)]
 
     min_v = float('inf')
@@ -146,3 +110,38 @@ for tc in range(1,T+1):
     bfs(s,e)
 
     print(f'#{tc} {min_v-1}')
+
+
+# T = int(input())
+# todo
+# 백트래킹이 아니라 bfs로 que에 이전 노드 넣어서
+# def mt(s,cnt=0):
+#     global min_v
+#     i,j = s
+#
+#     if cnt > min_v:
+#         return
+#
+#     if s == e:
+#         min_v = min(cnt,min_v)
+#         return
+#
+#     if s in turner_in: # todo 터널 지나가는 조건 확인
+#         ni,nj = turner[s][:2]
+#         vst.append((ni,nj))
+#         mt((ni,nj),cnt+turner[s][2])
+#         vst.remove((ni,nj))
+#
+#     for d in dir:
+#         ni,nj = i+d[0],j+d[1]
+#         if 0<=ni<N and 0<=nj<N:
+#             if (ni,nj) not in vst:
+#                 vst.append((ni,nj))
+#                 if mnt[ni][nj] > mnt[i][j]:
+#                     tmp = 2*(mnt[ni][nj]-mnt[i][j])
+#                 elif mnt[ni][nj] == mnt[i][j]:
+#                     tmp = 1
+#                 else :
+#                     tmp = 0
+#                 mt((ni,nj),cnt+tmp)
+#                 vst.remove((ni,nj))
