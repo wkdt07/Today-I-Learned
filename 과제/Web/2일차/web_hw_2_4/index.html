@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 자손 선택자. div 이내에 있는 p 요소는 모두 파란색 글씨로 저장 */
+      div p {
+        color: blue;
+      }
+
+      /* 자식선택자. 자식 이후의 손자, 후손들은 포함하지 않음 */
+      div > p {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <!-- 부모 -->
+      <p>자식</p>
+      <ul>
+        <p>손자</p>
+      </ul>
+      <p>자식</p>
+    </div>
+  </body>
+</html>
