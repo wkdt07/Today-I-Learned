@@ -6,3 +6,8 @@ for _ in range(M):
     friend[i].append(j)
     friend[j].append(i)
 print(friend)
+
+vst = [0] * N
+def dfs():
+    for i in range(N):
+
