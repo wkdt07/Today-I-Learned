@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<h1>저녁메뉴 추천</h1>
+<p>오늘의 메뉴는 {{foods}}입니다.</p>
+<p>
+  이 중 추천 메뉴는 {{picked}}이며, 해당 음식은 {{picked|length}}글자입니다.</p>
+  {% comment %} dtl 반복 {% endcomment %}
+<ul>
+  {% for food in foods %}<li>{{food}}</li>{% endfor %}</ul>
+
+  {% if foods|length == 0 %} <p>메뉴가 소진되었습니다</p> 
+  {% else %} <p>무엇을 드시겠습니까?</p>
+  {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>이 곳에서 할 일을 생성합니다.</h1>
+  <p>추후 기능 추가 예정</p>
+  <form action="http://127.0.0.1:8000/todos" method = "GET">
+    <label for="work">검색</label>
+  <input type="text" id = "message" name="work">
+  <input type="submit">
+</form>
+{% endblock content %}
+

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Throw</h1>
+<form action="{%url 'articles:catch'%}" method = "GET">
+    {% comment %} urls에서 appname='articles'로 잡아둔 거. 
+    articles라는 namespace에 속한 catch
+    
+    {% endcomment %}
+    <input type="text" id="message" name = "message">
+    <input type="submit">
+</form>
+
+{% endblock content %}
