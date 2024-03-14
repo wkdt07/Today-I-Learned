@@ -21,6 +21,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('articles/',include('articles.urls')), # 이건 http://127.0.0.1:8000/articles/주소이름/ 형태로 저장됨  
-    path('',include('articles.urls')), # 이 상태로 하면 그냥 articles.urls에서 지정해도 됨 http://127.0.0.1:8000/주소이름/  
-
+    path('articles/',include('articles.urls')), # 이 상태로 하면 그냥 articles.urls에서 지정해도 됨 http://127.0.0.1:8000/주소이름/  
+    path('page/',include('page.urls'))
 ]

@@ -3,8 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
+    
     context = {
-        'name' : 'Jane'
+        'name' : 'Jane',
+        'num' : 1 # details로 이동하기 위해선 num 변수도 필요하다.
     }
     
     
