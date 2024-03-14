@@ -2,7 +2,6 @@
 # -*- coding:utf-8 -*-
 from collections import deque as dq
 N = 9
-from copy import deepcopy as dcopy
 arr = [list(map(int,input().split())) for _ in range(9)]
 
 target_lst = [] # 0이 있는 위치를 i,j로
@@ -14,7 +13,7 @@ for i in range(9):
 # cands = [i for _ in range(1,10)]
 # 행과 열과 3*3 결과 검사의 교집합이 해당 좌표에 들어갈 수 있는 값
 
-vst = dcopy(arr)
+
 finish = False # 한 번만 하려고
 def candidate(arr,target): # candidate를 생성하는 함수
     cands = [_ for _ in range(1,10)]
@@ -34,32 +33,29 @@ def candidate(arr,target): # candidate를 생성하는 함수
                 cands.remove(arr[ni][nj])
     return cands
 
-def bt(vst,target_lst=target_lst):
+def bt(idx = 0):
     global finish
-
     if finish: # 딱 한 번만 출력
         return
-
-    if not target_lst:
+    if idx == len(target_lst): #  target_lst에서 직접 target을 pop 해서 없애가는 것보다 훨씬 안전한 방법
         finish = True
-        for l in range(9):
-            print(*vst[l])
+        for k in range(N):
+            print(*arr[k])
         return
-
-    # for target in target_lst:
-    target = target_lst.pop()
-    cands = candidate(vst,target)# 사용 가능한 candidate
+    target = target_lst[idx]
+    cands = candidate(arr,target)
     if not cands:
         return
-    cands = dq(cands)
-    cand = cands.popleft()
+
     i,j = target
-    vst[i][j] = cand
-    bt(vst,target_lst)
-    cands.append(cand)
-    target_lst.append(target)
-    return
-bt(vst)
+    for cand in cands:
+        arr[i][j] = cand
+        bt(idx+1) # 굳이 인자로 vst를 받을 필요가 없다. 어차피 위에서 vst에다가 값을 넣어놔서 밑에서 빼줘야함
+        # target_lst.append(target)
+        arr[i][j] = 0
+
+bt()
+
 
 # 행 검사
 # 열 검사
