@@ -54,6 +54,10 @@ for case in cases:
     virus(case)
 
 print(max_v)
+
+
+
+
 # 이 방법의 문제점 -> 감염된 놈이 다시 감염시키는걸 생각 안 함
 # def virus(v,arr): # 싹 다 감염시키는 함수
 #     global cnt
