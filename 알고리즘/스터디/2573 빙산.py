@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import sys
 input = sys.stdin.readline
 from collections import deque as dq
@@ -7,7 +8,7 @@ from collections import deque as dq
 # 만약 최악의 경우라도 두쪽나는건 10 이하로밖에 안 나옴
 # 햇수 바뀔때마다 DFS 돌리면 된다.
 
-dir = [(1,0),(0,1),(-1,0),(0,1)]
+dir = [(1,0),(0,1),(-1,0),(0,-1)]
 # ice_set = set()
 
 N,M = map(int,input().split())
@@ -27,39 +28,42 @@ def bfs(i,j):
         i,j = q.popleft()
         for d in dir:
             ni,nj = i+d[0],j+d[1]
-            if ni in range(N) and nj in range(M) and not vst[ni][nj]:
-                vst[ni][nj] = 1
-                q.append([ni,nj])
-            elif not arr[ni][nj]:
-                melting_arr[i][j] += 1
+            if ni in range(N) and nj in range(M):
+                if not vst[ni][nj] and arr[ni][nj]:
+                    vst[ni][nj] = 1
+                    q.append([ni,nj])
+                elif not arr[ni][nj]:
+                    melting_arr[i][j] += 1
+
 
 
 year = 0
 while True:
     cnt = 0
-    year += 1
-    ice_cnt = 0
     vst = [[0] * M for _ in range(N)]
     melting_arr = [[0] * M for _ in range(N)]
     for i in range(N):
         for j in range(M):
-            if arr[i][j] and not vst[i][j]:
-                ice_cnt += 1
-                vst[i][j] = 1
-                bfs(i,j)
-
+            if arr[i][j]:
+                # ice_cnt += 1 # 얼음의 총 갯수
+                if not vst[i][j]:
+                    vst[i][j] = 1
+                    bfs(i,j)
+    # melt_cnt = 0
     # todo 다 녹았는데도 아무것도 없을 때
     for i in range(N):
         for j in range(M):
             if arr[i][j]:
                 arr[i][j] = max(0,arr[i][j]-melting_arr[i][j])
+                # melt_cnt += 1
 
     if cnt >= 2:
         print(year)
         break
-    if not ice_cnt:
+    if not cnt:
         print(0)
         break
+    year += 1
 
 
 # dir = [(1,0),(0,1),(-1,0),(0,1)]
