@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>NEW</h1>
+
+<form action="{% url "articles:create" %}" method = "POST">
+    {% comment %} 포스트 방식 {% endcomment %}
+{% csrf_token %}
+{% comment %} form 태그 쓰면 csrf 토큰을 무조건 만들어줘야한다. {% endcomment %}
+<div>
+    <label for="title">Title : </label>
+    <input type="text" name = 'title' id='title'>
+</div>
+<div>
+    <label for="content">
+        Content : 
+    </label>
+    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    
+</div>
+
+{% comment %} 제출버튼 {% endcomment %}
+<input type="submit"> 
+{% comment %} 이걸 눌러야 데이터가 csrf_token에 전달된다. POST 방식으로 {% endcomment %}
+
+</form>
+{% endblock content %}

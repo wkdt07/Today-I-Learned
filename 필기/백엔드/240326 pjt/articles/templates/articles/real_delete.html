@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>정말 삭제하시겠습니까?</p>
+<form action="{% url "articles:delete" article.pk%}"method = 'POST'>
+
+    {% csrf_token %}
+    <input type="submit" value = "DELETE">
+</form>
+<a href="{% url "articles:detail" article.pk%}">아니오</a>
+{% endblock content %}

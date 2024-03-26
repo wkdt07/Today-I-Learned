@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>DETAIL</h2>
+<hr>
+<h3>{{article.pk}}번째 글</h3>
+<hr>
+<h3>제목 : {{article.title}}</h3>
+<h3>내용 : {{article.content}} </h3>
+<h3>작성시간 : {{article.created_at}} </h3>
+<h3>수정시간 : {{article.updated_at}}</h3>
+
+{% comment %} 백버튼 만들기 {% endcomment %}
+<a href="{% url "articles:index" %}">[BACK]</a>
+
+{% comment %} 삭제 버튼 만들기 {% endcomment %}
+<form action="{% url "articles:delete" article.pk%}"method = 'POST'>
+    {% csrf_token %}
+    <input type="submit" value = "DELETE">
+</form>
+
+<a href="{% url "articles:edit" article.pk %}">EDIT</a>
+{% endblock content %}
