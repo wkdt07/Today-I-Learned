@@ -20,8 +20,64 @@
 # 시작 가능 위치와 방향이 곧 인자.
 from collections import deque as dq
 T = int(input())
+# todo 수확할 수 있는 공간이면 통과할 수 있다는걸 적용해야함
+def bfs(start,start_direction,cnt = 1):
+    global max_v
+    now_v = 0
+    agri = arr[:]  # 몇 번 경작했는지 확인용
+    q = [(start,start_direction,cnt)]
+    q = dq(q)
+    seed = [] # 씨를 심어놓은 좌표
+    while q:
+        now,now_dir,now_day = q.popleft() # 현재위치, 현재 방향, 현재 날짜
+        if now_day == M+1: # 가동일수 M일이 끝난다면
+            max_v = max(now_v,max_v)
+            break
+        flag = False # 움직일 수 있는지 판단 여부
+
+        i, j = now
+
+        # 오전
+        if arr[i][j] >= agri[i][j] + 3 + 1: # 수확 가능하면, # 시작 값이 1이기 때문에 그냥 +1 해줌 todo 확인 필요
+            now_v += 1
+            arr[i][j] = 0
+            # agri[i][j] += 1
+            seed.remove((i,j))
+        else: # 수확할 수 없으면 -> 이 안에 다음 방향이 들어가면 안되지.
+            # 경작지 확인
+            if not arr[i][j]: # 현재가 경작할 수 있는 지역이면
+                seed.append((i,j))
+                agri[i][j] += 1 # todo 여기서 씨 심기 횟수를 늘려놔야 한다.
+                arr[i][j] = 1 # 씨 심기
+
+            # else: # 현재 농지가 수확할 수도 없고, 빈 농지도 아니라면 -> 경우가 없음
+            # 움직일 수 있는지 여부 확인
+            # 방향을 4의 나머지로
+            # 방향은 인덱스가 a라면 -1,0,1,2 순서
+        for p in range(-1,3):
+            flag = False
+            next_dir = (start_direction + p) % 4
+            next_d = dir[next_dir]
+            ni,nj = now[0] + next_d[0],now[1] + next_d[1]
+            if ni in range(N) and nj in range(N):
+                if not arr[ni][nj] or arr[ni][nj] >= agri[ni][nj] + 3 + 1: # 빈 농지거나, 수확이 가능하면 -> 거기로 움직일 수 있음
+                    flag = True # 움직일 수 있는 공간이 있음
+                    break # 움직일 방향을 잡아놓고 끝
+
+            #     pass
 
 
+
+        # 여기부턴 오후
+        if flag: # 움직일 수 있는 공간이 있으면
+            next_node = (ni, nj)
+            q.append((next_node, next_dir , now_day+1))
+        else:
+            q.append((start,now_dir,now_day+1))
+
+        # 모든 씨 심은 곳 값 += 1
+        for si,sj in seed:
+            arr[si][sj] += 1
 
 for tc in range(1,T+1):
     N,M = map(int,input().split()) # N은 지형 가로세로, M은 일수
@@ -36,33 +92,16 @@ for tc in range(1,T+1):
                 toil.append((i,j))
     dir = [(0,1),(-1,0),(0,-1),(1,0)] # (앞이 위로(-1,0)일 때의 기준 오앞왼뒤)
     max_v = 0
+
+    for start in toil:
+        for start_direction in range(4):
+            bfs(start,start_direction)
+
+    print(f'#{tc} {max_v}')
     # start_direction : 인덱스 형태
-def bfs(start,start_direction,cnt = 0):
-    global max_v
-    now_v = 0
-    agri = arr[:]  # 몇 번 경작했는지 확인용
-    q = [(start,start_direction,cnt)]
-    q = dq(q)
-    while q:
-        now,now_dir,now_day = q.popleft() # 현재위치, 현재 방향, 현재 날짜
-        if now_day == M+1: # 가동일수 M일이 끝난다면
-            max_v = max(now_v.max_v)
-            break
-        flag = False # 움직일 수 있는지 판단 여부
 
-        i,j = now
 
-        # 오전
-        if arr[i][j] == agri[i][j] + 3 - 1: # 수확 가능하면, # 시작 값이 0이기 때문에 그냥 -1 해줌
-            now_v += 1
-            arr[i][j] = 0
-            agri[i][j] += 1
-        else:
-            # 움직일 수 있는지 여부 확인
-            # 방향을 4의 나머지로
-            pass
 
-        # 오후
 
 
 
