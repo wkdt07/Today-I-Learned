@@ -14,7 +14,7 @@ def connected(num_lst): # 연결되어있는지
     q = dq(q)
     v_cnt =0
     vst_2 = [0]*N
-    # vst_2[x] = 1
+    vst_2[x] = 1
     num_of_other = N - len(num_lst)
     while q:
         now = q.popleft()
@@ -28,11 +28,24 @@ def connected(num_lst): # 연결되어있는지
                 q.append(next_node)
 def dfs(now,sum_v):
     global min_v
-    if sum_v >= half:
+    step = False
+    for finish_node in arr[now]:
+        if finish_node not in vst:
+            step = True
+            break
+    if not step: # 다 찾아봤는데도 없다 -> 마지막 노드임
         connected(vst)
         if flag:
-            min_v = min(min_v,abs((total-sum_v)-sum_v))
+            min_v = min(min_v, abs((total - sum_v) - sum_v))
         return
+
+    # if sum_v >= half:
+    #     connected(vst)
+    #     if flag:
+    #         min_v = min(min_v,abs((total-sum_v)-sum_v))
+    #     return
+
+
 
     for next_node in arr[now]:
         if next_node not in vst:
@@ -53,9 +66,9 @@ for tc in range(1,T+1):
         for j in range(N):
             if adj[i][j]:
                 arr[i].append(j)
-                arr[j].append(i)
+                # arr[j].append(i)
     numbers = list(map(int,input().split())) # 각 지역의 유권자
-
+    # print(*arr)
     total = sum(numbers)
     half = total//2
     # todo 나누기 -> 이후에 connected 함수로 나눠지는지 여부 확인
@@ -65,6 +78,7 @@ for tc in range(1,T+1):
     for now in range(N):
         vst = [now]
         dfs(now,numbers[now])
+
 
 
     print(f'#{tc} {min_v}')
