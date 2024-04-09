@@ -128,34 +128,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'django.log',
-            'maxBytes': 1024*1024*5,  # 5MB
-            'backupCount': 5,
-            'formatter': 'verbose',
-        },
-    },
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-    },
-    'loggers': {
-        "django": {
-            "handlers": ["file"],
-            "propagate": True,
-        },
-        'django.db.backends': {
-            'handlers': ["file"],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
