@@ -37,24 +37,30 @@ for t in range(1,T+1):
         i,j = s
         next_target = target[ta]
         ni,nj = next_target
-        di,dj = ni-i,nj-j
+
+        di,dj = ni-i,nj-j # 앞으로 가야할 i,j 방향 이동거리
+
         d = cnt%4 #dir[d]가 현재 움직이고 있는 방향
         now_d = dir[d]
-        cnt_temp_i = 0
-        cnt_temp_j = 0
+        cnt_temp_i = 0 # i를 맞추기 위한 우회전 수
+        cnt_temp_j = 0 # j를 맞추기 위한 우회전 수
+
         temp = d # 최대 방향 맞추기 위해서
-        if di:
-            while dir[temp][0]*di <=0:
+
+        if di: # di가 존재한다면
+            while dir[temp][0]*di <=0: # 차이를 줄이는 방향으로 맞추기(di가 +라면 temp는 -로, di가 - 라면 temp는 +로)
                 temp += 1
                 cnt_temp_i += 1
                 temp %= 4
+
         temp = d
         if dj:
             while dir[temp][1]*dj <= 0:
                 temp += 1
                 cnt_temp_j += 1
                 temp %= 4
-        cnt_temp = max(cnt_temp_i,cnt_temp_j)
+
+        cnt_temp = max(cnt_temp_i,cnt_temp_j) # 어차피 둘의 max값을 쳐도 상관이 없는게, 3.4 라면 3번 돌고 움직인 다음 한 번 더 돌면 됨
 
         cnt += cnt_temp
 

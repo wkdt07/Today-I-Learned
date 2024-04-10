@@ -79,12 +79,12 @@ def game(s,vst,cnt = 0):
         # ni,nj = i+di*p,j+dj*p
         st = 0
         st_lst = []
-        while st <=2:
+        while st <=2: # 움직일 수 있는 범위인 p1과 p2 구하기
             ni, nj = i + di * p, j + dj * p
 
-            if not(0<=ni<N and 0<=nj<N):
+            if not(0<=ni<N and 0<=nj<N): # 끝까지 가버렸으면
                 break
-            if st == 2:
+            if st == 2: # 돌을 2개 발견했으면
                 break
             if vst[ni][nj] == 1:
                 st += 1
@@ -102,9 +102,9 @@ def game(s,vst,cnt = 0):
                 p2 = st_lst[1]
 
 
-            for k in range(p1+1,p2+1):
+            for k in range(p1+1,p2+1): # 갈 수 있는 모든 방향에 대해서
                 ni,nj = k*di+i,k*dj+j
-                if vst[ni][nj] == 1:
+                if vst[ni][nj] == 1: # 갈 수 있는 공간에 돌이 있다면
                     # if (ni,nj) not in eat_lst:
                     vst[ni][nj] = 2
                     eat_lst.append((ni,nj))
@@ -113,8 +113,8 @@ def game(s,vst,cnt = 0):
                     # eat_lst.remove((ni,nj))
 
 
-                if not vst[ni][nj]:
-                    vst[ni][nj] = 2
+                if not vst[ni][nj]: # 공간 없이 그냥 갈 수 있는 곳이면
+                    vst[ni][nj] = 2 # 방문표시만 한다
                     game((ni,nj),vst,cnt+1)
                     vst[ni][nj] = 0
 
