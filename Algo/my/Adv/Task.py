@@ -13,7 +13,7 @@ def task():
 
         else:
             for k in range(1,N+1):
-                if needs[k]:
+                if needs[k] != []:
                     result = -1
                     return
             result = min(result,max(times))
