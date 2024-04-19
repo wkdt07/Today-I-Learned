@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{nickname}}님의 프로필 페이지</h1>
+<hr>
+{% if me == request.user %}
+{% else %}
+{% comment %} 팔로우 버튼 {% endcomment %}
+<form action="{% url "accounts:follow" me.pk%}" method = 'POST'>
+    {% csrf_token %}
+    <input type="submit" value = 'Follow'>
+</form>
+{% endif %}
+<hr>
+<h2>유저가 쓴 글</h2>
+{% if boards %}
+{% for board in boards %}
+<div >
+    {% comment %} def comment_detail(request, board_pk, comment_pk): {% endcomment %}
+    
+    <p>글번호 : {{board.pk}}</p>
+    <p>글제목 : <a href="{% url "boards:detail" board.id%}">
+        {{board.title}}
+    </a></p>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<p>아직 작성한 글이 없습니다.</p>
+<hr>
+
+{% endif %}
+
+
+
+<h2>유저가 쓴 댓글</h2>
+{% if comments %}
+{% for comment in comments %}
+<div >
+    {% comment %} def comment_detail(request, board_pk, comment_pk): {% endcomment %}
+    <a href="{% url "boards:detail" comment.board_id%}">
+        {{comment.content}}
+    </a>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<p>아직 작성한 댓글이 없습니다.</p>
+<hr>
+
+{% endif %}
+
+
+<h2>팔로워</h2>
+
+{% if followers %}
+{% for follower in followers %}
+<div >
+    
+    {% comment %} def profile(request,user_pk): {% endcomment %}
+    <a href="{% url "accounts:profile" follower.id%}">
+        {{follower.username}}
+    </a>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<p>팔로워가 없습니다.</p>
+<hr>
+{% endif %}
+
+<h2>팔로잉</h2>
+
+{% if followings %}
+{% for following in followings %}
+<div >
+    
+    {% comment %} def profile(request,user_pk): {% endcomment %}
+    <a href="{% url "accounts:profile" following.id%}">
+        {{following.username}}
+    </a>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<p>팔로잉이 없습니다.</p>
+<hr>
+{% endif %}
+
+{% comment %} 팔로우 버튼 {% endcomment %}
+
+{% endblock content %}
+
