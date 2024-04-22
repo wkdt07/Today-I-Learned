@@ -1,0 +1,4 @@
+﻿  소스.cpp
+c:\users\ssafy\desktop\shb\today-i-learned\필기\c++\project1\project1\소스.cpp(13): warning C4305: '초기화 중': 'int'에서 'bool'(으)로 잘립니다.
+c:\users\ssafy\desktop\shb\today-i-learned\필기\c++\project1\project1\소스.cpp(18): warning C4552: '!=': 식의 결과가 사용되지 않습니다.
+  Project1.vcxproj -> C:\Users\SSAFY\Desktop\shb\Today-I-Learned\필기\c++\Project1\Debug\Project1.exe

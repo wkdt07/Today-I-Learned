@@ -57,3 +57,36 @@ head는 우리가 보고 있는거
 
 
 > extensions 중에 git graph라고 있음
+
+
+# 240419
+
+## Git Workflow
+
+- 깃으로 협업하는거
+
+
+
+### pull request
+
+![Alt text](image-3.png)
+
+- PR. 
+- master는 서비스가 돌아가는거
+- 근데 내가 멋대로 merge 해버리면 어떤 오류가 날지 모름
+- merge 권한이 있는 사람한테 pull request를 하면 권한자(팀장)가 병합(merge)
+
+
+
+## fork
+
+권한이 없을 때 남의 레포지토리를 통으로 가져오는거
+
+### upstream
+
+복제된 저장소와 원본 저장소를 동기화
+
+
+-u origin 에서 -u가 upstream의 약자였음
+
+이제 이거 하면 origin 브랜치랑 upstream(원본) 브랜치가 구분됨
