@@ -324,3 +324,205 @@ myPromise2.then(() => {
 >
 > 크롬 개발자 도구 performance 탭
 
+# 자바스크립트 해석기
+
+## 엔진
+
+- 주요 구성 요소
+  - 힙 메모리(Heap Memory)
+    - 메모리 할당이 일어나는 곳
+    - 변수나 함수가 어딘가에는 저장되어 있어야 참조나 호출을 할텐데, 그 영역이 힙 메모리다.
+  - 콜 스택(Call Stack)
+    - 호출 스택이 쌓이는 곳
+    - 코드를 읽어내려가면서 수행할 작업들을 밑에서부터 쌓는다.
+      - 힙 메모리에서 작업 수행에 필요한 것들을 찾아서 작업을 수행하는 공간
+  - 실행 컨텍스트(Execution Context)
+    - 함수를 실행하기 위해서 필요한 정보
+      - 변수, 매개변수, 렉시컬 스코프 등
+    - 실행 컨텍스트가 콜 스택에 쌓였다가, 실행되고 나서 콜 스택에서 삭제
+  - 눈으로 보는 사이트
+    - https://ui.dev/javascript-visualizer
+    - 참고로 ES5 까지밖에 지원 안한다. (var 로 써야함 / 세미콜론 필수 등)
+
+- 예제 코드
+
+```
+var x = 10;
+
+function outer() {
+   var y = 20;
+  
+   function inner(z) {
+      console.log(x + y + z);
+   }
+  
+  return inner;
+}
+
+var innerFunc = outer();
+innerFunc(30);
+
+
+```
+
+## 런타임
+```js
+function first() {
+    console.log("first")
+    second()
+}
+
+function second() {
+    setTimeout(function() {
+        console.log("second")
+    }, 1000)
+    third()
+}
+
+function third() {
+    console.log("third")
+}
+
+first()
+```
+
+# 런타임은 왜 저렇게 만들어졌을까?
+
+- 자바스크립트 Single Thread 기반 언어기 때문에, 런타임이 저런 식으로 만들어져있다.
+
+Single Thread 기반 언어??
+
+
+### 프로세스와 쓰레드
+
+- 간단하게 할거임. OS 공부 하면서 다시 학습하시기 바랍니다.
+
+#### 프로세스(Process)
+- 실행 중에 있는 프로그램
+- 프로그램
+  - 명령어와 정적인 데이터 묶음
+  - 프로그램 저장 위치: 보조기억장치
+    - 실행되기 위해서 보조기억장치에서 대기
+    - 프로그램을 실행하면, 주기억장치(RAM)에 메모리 할당
+- 프로세스는 적어도 하나 이상의 쓰레드를 가진다.
+
+#### 쓰레드(Thread)
+- 프로세스 내부에서 실제로 작업을 하는 주체
+  - 작업의 단위, 흐름 이라고도 표현함
+  - 프로그램을 돌리기 위해서 프로세스에 할당된 자원(cpu, 메모리 용량)이 존재
+    - 이러한 자원들을 실제로 이용하는 단위
+- 하나의 프로세스가 하나 이상의 쓰레드로 동작
+
+#### 멀티 프로세스
+- 실제로 우리는 동시에 여러 프로그램을 실행
+  - 라이브 + vscode + 야구 + op.gg 등등
+- CPU 는 한 번에 하나의 연산만 수행 가능
+  - 연산이 너무 빨라서 동시처럼 보이는 것
+- 프로세스(프로그램)끼리는 독립된 자원(영역)을 가짐
+
+#### 멀티 쓰레드
+- 하나의 프로세스 내에서 동시에 여러 쓰레드로 작업을 실행
+- 쓰레드끼리는 프로세스 내의 자원을 공유함
+  - 동시성 문제
+    - 공유된 자원에 동시에 여러 쓰레드가 접근하는 경우
+    - 개발자가 주의해서 작업
+    - 문제를 막는 기법: 뮤텍스(Mutex), 세마포어(Semaphore)
+
+
+# 중요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+## html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+</head>
+<!-- onload: 렌더링 후에 바로 실행할 함수를 등록 -->
+<body onload="getData()">
+    <form id="articleForm">
+        <label for="title">제목: </label>
+        <input type="text" id="title" name="title">
+        <br><br>
+        <label for="content">내용: </label>
+        <input type="text" id="content" name="content">
+        <br><br>
+        <button type="submit">작성하기</button>
+    </form>
+
+    <hr>
+    <section id="articleSection"></section>
+
+    <script>
+        const url = "http://localhost:3001/articles"
+        // 전체 조회
+        const getData = function() {
+            axios.get(url)
+            .then((response) => {
+                console.log(response)
+                renderData(response.data)
+            }).catch((error) => {
+                console.log("에러남!", error)
+            })
+        }
+
+        // 화면 렌더링(게시글 출력)
+        function renderData(data) {
+            const section = document.querySelector('#articleSection')
+            section.innerHTML = '' // 기존 내용 비우기
+
+            data.forEach((item) => {
+                const articleElement = document.createElement('article')
+                articleElement.innerHTML = `
+                    <p>글번호: ${item.id}</p>
+                    <h2>${item.title}</h2>
+                    <p>${item.content}</p>
+                    <button onclick="deleteArticle('${item.id}')">삭제</button>
+                    <hr/>
+                `
+                section.appendChild(articleElement)
+            })
+        }
+
+        // 생성
+        const form = document.querySelector('#articleForm')
+        form.addEventListener('submit', function(event) {
+            event.preventDefault()
+
+            const title = document.querySelector('#title')
+            const content = document.querySelector('#content')
+
+            const postData = {
+                title: title.value,
+                content: content.value
+            }
+
+            axios.post(url, postData)
+                .then((response) => {
+                    console.log('create 완료: ', response.data)
+                    title.value = ''
+                    content.value = ''
+                    getData()
+                }).catch((error) => {
+                    console.log("에러남!", error)
+                })
+        })
+        
+        // 삭제
+        function deleteArticle(id) {
+            axios.delete(`${url}/${id}`)
+                .then((response) => {
+                    console.log("삭제 완료: ", response.data)
+                    getData()
+                }).catch((error) => {
+                    console.log("에러남!", error)
+                })
+        }
+    </script>
+</body>
+</html>
+```
