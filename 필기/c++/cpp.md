@@ -282,3 +282,57 @@ int main()
 
        // 7, 전처리기 define 18m
 ```
+
+### 7. 전처리기 + 비트연산자
+
+```cpp
+
+    // 7, 전처리기 define -> 내가 지정한 구문을 치환할 수 있음
+    #define Hungry 1 // 이제부터 Hungry는 1로 받아들여진다.
+    int iStatus = Hungry;
+    // 왜 쓰냐?
+    // 1) 가독성. 화상 데미지 26, 빙결 데미지 52 이런 것들 다 외워야 되냐? x  가독성 올라간다.
+    // 2) 유지보수 .만약 Hungry가 바뀐다면? define 부분만 바꾸면 됨. -> 유지보수 측면에서 훨씬 낫다.
+
+    // 7.5 전처리기 + 비트연산자
+    // 현재 iStatus는 32비트(int)
+    // 총 몇 가지 상태를 해당 비트 안에 조합할 수 있을까? 32가지 상태(한 비트당 하나의 상태)
+    #define Thirsty 2 // 2^1 //0x2 //16비트
+    #define Cold 4 // 2^2 //0x4
+    #define Hot 8//0x8
+    #define Tired 16//0x10
+    #define Poison 0x20
+    #define Poison1 0x40
+    #define Poison2 0x80
+    #define Poison3 0x100
+    #define Poison4 0x200
+    #define Poison5 0x400
+    #define Poison6 0x800
+
+    iStatus = 0;
+    iStatus |= Hungry;
+    iStatus |= Thirsty;
+
+    if(iStatus & Thirsty)//둘의 자릿수가 다 1이어야 1, 여긴 두 번째 자리가 1이어야 함
+    {
+
+    }
+//     특정 자리 비트 제거
+     iStatus &= ~Thirsty;
+```
+
+### 8. 변수
+
+```cpp
+    // 8. 변수
+    // 1) 지역변수
+    // 우리가 작성하는 변수는 모두 main() 안에 들어가있다. 이걸 함수라고 부름.
+
+    // 2) 전역변수
+    // 함수 바깥에 선언하는 변수
+
+    // 함수? 기능.
+    // 3) 정적변수
+    // 4) 외부변수
+    //6m
+```
