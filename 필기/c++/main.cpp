@@ -3,6 +3,11 @@
 //
 #include <stdio.h>
 
+
+int Add(int left, int right){
+    return left+right;
+}
+
 int main()
 {
 //    int i = 0;
@@ -153,10 +158,10 @@ int main()
     iStatus |= Hungry;
     iStatus |= Thirsty;
 
-    if(iStatus & Thirsty)//둘의 자릿수가 다 1이어야 1, 여긴 두 번째 자리가 1이어야 함
-    {
-
-    }
+//    if(iStatus & Thirsty)//둘의 자릿수가 다 1이어야 1, 여긴 두 번째 자리가 1이어야 함
+//    {
+//
+//    }
 //     특정 자리 비트 제거
 //     iStatus &= ~Thirsty;
 
@@ -167,10 +172,50 @@ int main()
     // 2) 전역변수
     // 함수 바깥에 선언하는 변수
 
-    // 함수? 기능.
+    // 함수? 기능. 특정 기능을 기준으로 나누는 것. 필요 기능에 따라 나눠 놓는걸 '모듈화' 라고 한다.
+
+
+    int sumv = Add(10,20);
+    printf("\n%d",sumv);
+
+
     // 3) 정적변수
     // 4) 외부변수
-    //6m
+    //
+
+    //9, 반복문
+
+    // 특정 조건을 만족하기까지 지속적으로 반복
+    // for문과 while문
+
+    // 1) for()
+
+//    for( /*반복자 초기화*/; /*반복자 조건 체크*/; /*반복자 변경*/)
+//    {
+//
+//    }
+
+    printf("\nOUTPUT TEST START\n");
+
+    for(int i = 0;i<10;++i)
+    {
+        if(i==2 | i == 3){
+            printf("it is continued\n");
+            continue;
+        }
+        printf("OUTPUT TEST\n");
+
+
+    }
+
+    // 2) while()
+    int i = 0 ;
+    while(/*조건체크*/i<2)
+    {
+        printf("output test\n");
+        ++i;
+
+    }
 
     return 0;
 }
