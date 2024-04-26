@@ -1,0 +1,32 @@
+ubuntu -> GUI 지원 -> 윈도우, 맥처럼 
+
+cent os -> CLI - command Line Interface
+
+
+이 2개가 리눅스 기반 OS(리눅스도 OS인데 이게 발전한거)
+
+
+- vm ware -> 가상머신웨어, 맥에다가 윈도우 까는것마냥 윈도우에다가 우분투 쓰는거
+	- 이게 더 가벼움. 이걸로.
+
+
+- virtual box -> 가상머신
+
+
+nano 편집기가 아니라 VIM(깃배쉬로 했던거)로 해라. -> 둘 다 메모장 같은건데, 명령어가 다름, 이걸 더 많이 씀
+
+
+
+다음주까지 기초 명령어 공부
+
+https://youtube.com/playlist?list=PL8oUjFBfGVJxH_oJkYfRwSqM9Q5Fy5C1X&si=diFPC20kS1-enTXn
+
+
+-------------------임베디드--------------------------
+
+리눅스로 컴파일 하는 법 공부
+
+- GCC -> C랑 C++ 빌드해서 파일 만드는 도구
+- MakeFile
+
+
