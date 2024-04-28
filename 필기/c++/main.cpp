@@ -8,8 +8,42 @@ int Add(int left, int right){
     return left+right;
 }
 
+// 구조체 struct
+// 사용자 정의 자료형
+typedef struct _tagMyST // _tagMyST가 실제 이름
+{
+    int a; // 이건 변수가 아니다. 그냥 파트의 이름임
+    float f;
+    // int 와 float을 묶어서 하나의 자료형을 만든 것
+
+}MYST; // MYST가 자료형의 별명
+
+typedef struct _tagBig
+{
+    MYST k;
+    int i;
+    char c;
+
+}BIG;
+
+typedef int INT; // 이제 내가 INT a; 라고 해도 프로그램은 int a;와 똑같이 반응한다.
+
 int main()
 {
+
+    // 구조체
+    MYST t; // 8바이트, int하나 , float 하나
+    MYST o = {1,3.14f}; //  이런 식으로 초기롸 가능
+    int iSize = sizeof(MYST); //
+//    printf("%d", iSize); // 8
+    t.a = 10;
+    t.f = 1.2312f;
+
+    // 구조체 안에 구조체가 들어갈 수도 있다
+
+
+
+
 //    int i = 0;
     //i : 변수
     //int : 자료형
@@ -193,29 +227,44 @@ int main()
 //    for( /*반복자 초기화*/; /*반복자 조건 체크*/; /*반복자 변경*/)
 //    {
 //
+////    }
+//
+//    printf("\nOUTPUT TEST START\n");
+//
+//    for(int i = 0;i<10;++i)
+//    {
+//        if(i==2 | i == 3){
+//            printf("it is continued\n");
+//            continue;
+//        }
+//        printf("OUTPUT TEST\n");
+//
+//
+//    }
+//
+//    // 2) while()
+//    int i = 0 ;
+//    while(/*조건체크*/i<2)
+//    {
+//        printf("output test\n");
+//        ++i;
+//
 //    }
 
-    printf("\nOUTPUT TEST START\n");
 
-    for(int i = 0;i<10;++i)
-    {
-        if(i==2 | i == 3){
-            printf("it is continued\n");
-            continue;
-        }
-        printf("OUTPUT TEST\n");
+    // 배열
 
+    int iArray[10] = {};
 
-    }
+    iArray[4] = 10;
+//    iArray[10] = 0;  // 배열 이상이니깐 오류가 난다. 근데 항상 난다는 보장이 없다.
+    // 배열은 메모리가 연속적.
+    // iArray[10]이라는 메모리 주소에 이미 다른 변수가 할당되어 있었고, 그 변수를 건드려서 값을 바꾼 것 일수도 있다.
 
-    // 2) while()
-    int i = 0 ;
-    while(/*조건체크*/i<2)
-    {
-        printf("output test\n");
-        ++i;
-
-    }
+    // 구조체
+    // 사용자 정의 자료형(데이터 타입)
+    // 6m 51s
+    //https://youtu.be/Nrtg_YSqwu4?si=DS4KZDIKkxsGdTXa
 
     return 0;
 }
