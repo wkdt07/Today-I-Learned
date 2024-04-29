@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="app">
+        <p>{{content}}</p> 
+        <!-- 이거 새로고침 계속 하면 {{content}}라는 말이 test보다 먼저 나와버린다. why? 코드 자체가 위에서부터 처리해서 -->
+        <input type="text" v-model = 'content'>
+        <!-- script로 바로 값이 간다.  -->
+        <input type="text" v-bind:value ='content'>
+        <!-- 여기서 script로 값이 가지 않는다 -->
+        
+        <hr>
+
+        <input type="checkbox" v-model="isRed">
+        <!-- 양방향이라 얘가 isRed값에 영향을 준다 -->
+        <p :class="{red:isRed}" >{{content}}</p>
+        <!-- isRed값에 따라서 red의 여부가 결정된다. -->
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp,ref } = Vue
+
+        const app = createApp({
+            // 객체의 생성자와 비슷. 파이썬의 __init__ 함수 같은거임 
+            setup() {
+                const content = ref("test") //이래야 페이지에서 바뀐걸 화면에 반영함
+                const content2 = "test"
+                // 차이? 반응형 변수의 여부
+                 
+                const isRed = ref(true)
+
+                return {
+                    content,
+                    isRed
+                }
+
+            }
+        })//.mount('#app') 여기다가 바로 써도 된다.
+        app.mount('#app') // 이게 뷰와 html을 연결히ㅏ는 역할을 한다. 
+    </script>
+</body>
+</html>
