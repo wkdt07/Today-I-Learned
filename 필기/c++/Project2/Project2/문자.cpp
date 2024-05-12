@@ -49,7 +49,7 @@ int main() {
 
 	char szChar[10] = "abcdef";
 	wchar_t szWChar[10] = L"abcdef"; // 이런 식의 L 문자열 초기화는 해당 타입만 가능
-	//wchar_t szWChar[6] = L"abcdef"; 잘못된 표현임. why? abcdef 6개 말고도 끝에 nul 문자 하나를 추가해야함. 따라서 최소 7자리가 필
+	//wchar_t szWChar[6] = L"abcdef"; 잘못된 표현임. why? abcdef 6개 말고도 끝에 nul 문자 하나를 추가해야함. 따라서 최소 7자리가 필요
 
 	//short arrShort[10]=L"abcdef" 불가능
 	short arrShort[10] = { 97,98,99,100,101,102, };
@@ -58,7 +58,17 @@ int main() {
 
 	// 문자열과 포인터
 	//wchar_t* p_char = L"abcdef"; // 이러면 L 부분에서 빨간 줄 뜬다. 
-	const wchar_t* p_char = L"abcdef"; // 포인터를 통해서 값을 못 바꾸도록. 
+
+
+	// swWChar은 배열, p_char은 포인터
+
+	wchar_t szWChar[10] = L"abcdef"; // 배열
+	wchar_t* p_char = L"abcdef" // 포인터. 이게 가능하려면? 문자열이 '주소'여야 한다. 
+	// 포인터 선언 뒤에 오는걸 해당 값을 갖고오는 '주소'임. (문자열의 시작 주소)
+		// int a=0; int*pointer = &a; => &a는 해당 값을 갖고 있는 주소를 의미함
+
+
+	const wchar_t* t_char = L"abcdef"; // 포인터를 통해서 값을 못 바꾸도록. 
 	// 이게 가능하다는게 시사하는 바
 	// 1. 문자열은 '주소값'이다. -> 어딘가의 주소를 나한테 주는 것임(배열처럼 시작 주소를)
 	// 2. L은 하나당 2바이트를 차지한다는 의미이므로, 포인터의 해석 의미도 wchar_t로 준 것.
